@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_fade/image_fade.dart';
+import 'package:uotc/views/common/big_product_card.dart';
 import 'package:uotc/views/common/custom_text.dart';
 import 'package:uotc/views/common/small_product_card.dart';
 
@@ -183,123 +184,7 @@ class Home extends StatelessWidget {
                 crossAxisCount: 2,
               ),
               itemCount: 50,
-              itemBuilder: (context, index) => Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.sp),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 12,
-                      spreadRadius: -10,
-                      offset: Offset(0,3)
-                    )
-                  ]
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Product Image -- S t a r t --
-                    AspectRatio(
-                      aspectRatio: 1,
-                      child: Stack(
-                        children: [
-                          // Main Image -- S t a r t --
-                          Container(
-                            height: double.infinity, width: double.infinity,
-                            color: Colors.black.withOpacity(0.8),
-                            child: ImageFade(
-                              fit: BoxFit.cover,
-                              image: NetworkImage("https://source.unsplash.com/random?sin=$index"),
-                              loadingBuilder: (context, progress, chunkEvent) => Center(child: CircularProgressIndicator(color: Colors.white, strokeWidth: 1.sp,)),
-                            ),
-                          ),
-                          // Main Image -- E n d --
-
-                          // Add To Favorite -- S t a r t --
-                          Align(
-                            alignment: AlignmentDirectional.topEnd,
-                            child: Container(
-                              height: 35.sp, width: 35.sp,
-                              margin: EdgeInsets.all(10.sp),
-                              padding: EdgeInsets.all(8.sp),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.8),
-                                borderRadius: BorderRadius.circular(50.sp)
-                              ),
-                              child: SvgPicture.asset("assets/icons/fi-rr-heart.svg", color: Colors.white),
-                            ),
-                          ),
-                          // Add To Favorite -- E n d --
-                        ],
-                      ),
-                    ),
-                    // Product Image -- E n d --
-
-                    SizedBox(height: 5.h),
-
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Product Title Or Name -- S t a r t --
-                          CustomText.createCustomTajawalText(
-                            text: "product name",
-                            fontSize: 16,
-                            screenHeight: height,
-                            weight: FontWeight.bold
-                          ),
-                          // Product Title Or Name -- E n d --
-
-                          // Product Type -- S t a r t --
-                          CustomText.createCustomTajawalText(
-                            text: "product type",
-                            color: Colors.black.withOpacity(0.5),
-                            fontSize: 14,
-                            screenHeight: height,
-                          ),
-                          // Product Type -- E n d --
-
-                          SizedBox(height: 10.h),
-
-                          // Product Title Or Name -- S t a r t --
-                          CustomText.createCustomTajawalText(
-                            text: "Incididunt magna duis voluptate" * (index +1),
-                            fontSize: 12,
-                            screenHeight: height,
-                            maxLines: 3
-                          ),
-                          // Product Title Or Name -- E n d --
-
-                          SizedBox(height: 10.h),
-
-                          // Product Price -- S t a r t --
-                          Row(
-                            children: [
-                              CustomText.createCustomTajawalText(
-                                text: "\$",
-                                color: Colors.black.withOpacity(0.8),
-                                fontSize: 14,
-                                screenHeight: height,
-                                weight: FontWeight.bold
-                              ),
-                              CustomText.createCustomTajawalText(
-                                text: "23",
-                                fontSize: 16,
-                                screenHeight: height,
-                                weight: FontWeight.bold
-                              ),
-                            ],
-                          ),
-                          // Product Price -- E n d --
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              itemBuilder: (context, index) => BigProductCard(image: "https://source.unsplash.com/random?sin=$index")
             ),
           ),
         ],

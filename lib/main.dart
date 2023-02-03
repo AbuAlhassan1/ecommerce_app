@@ -6,6 +6,7 @@ import 'package:uotc/translations/locale_keys.g.dart';
 import 'package:uotc/views/auth/signin.dart';
 import 'package:uotc/views/auth/signup.dart';
 import 'package:uotc/views/beyond_auth/beyond_auth_container.dart';
+import 'package:uotc/views/beyond_auth/product_page.dart';
 import 'package:uotc/views/welcome.dart';
 
 // Use This Command To Generate Transitions
@@ -64,15 +65,26 @@ class MyApp extends StatelessWidget {
       ),
       // Registration Routes -- E n d --
 
-      // Welcom Rout -- S t a r t --
+      // Home Rout -- S t a r t --
       GoRoute(
         path: '/home',
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           child: const BeyondAuthContainer()
         ),
+        routes: [
+          // Welcom Rout -- S t a r t --
+          GoRoute(
+            path: 'product/:id',
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              child: const ProductPage()
+            ),
+          ),
+          // Welcom Rout -- E n d --
+        ]
       ),
-      // Welcom Rout -- E n d --
+      // Home Rout -- E n d --
     ],
     errorPageBuilder: (context, state) => MaterialPage(
       child: Scaffold(
