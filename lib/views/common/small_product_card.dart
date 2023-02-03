@@ -5,7 +5,8 @@ import 'package:image_fade/image_fade.dart';
 import 'package:uotc/views/common/custom_text.dart';
 
 class SmallProductCard extends StatelessWidget {
-  const SmallProductCard({super.key});
+  const SmallProductCard({super.key, required this.image});
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class SmallProductCard extends StatelessWidget {
                     color: Colors.black.withOpacity(0.8),
                     child: ImageFade(
                       fit: BoxFit.cover,
-                      image: const NetworkImage("https://source.unsplash.com/random?sin=1"),
+                      image: NetworkImage(image),
                       loadingBuilder: (context, progress, chunkEvent) => Center(child: CircularProgressIndicator(color: Colors.white, strokeWidth: 1.sp,)),
                     ),
                   ),
